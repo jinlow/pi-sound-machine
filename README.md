@@ -1,5 +1,7 @@
 # Sound Machine
-A small utility, to help convert a rasberry pi, into a sound machine...
+A small utility, to help convert a rasberry pi, into a sound machine.  
+
+_Helping me get sleep, by helping my children stay asleep._  
 
 ### Troubleshooting
 Some common issues, and fixes I found, setting up the dev environment.
