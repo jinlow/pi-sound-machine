@@ -11,6 +11,4 @@ fn main() {
     let source = Decoder::new(file).unwrap();
     sink.append(source);
     sink.sleep_until_end();
-
-    println!("Hello, world!");
 }
