@@ -18,6 +18,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     let sink = Sink::try_new(&stream_handle).unwrap();
     let cursor = Cursor::new(sounds[2]);
     let source = Decoder::new(cursor).unwrap();
+    // We want the sound to go forever, however, I need to figure
+    // out how to make the fade smoother.
     sink.append(source.repeat_infinite());
     sink.sleep_until_end();
     Ok(())
