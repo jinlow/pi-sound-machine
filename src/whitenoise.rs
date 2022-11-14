@@ -1,17 +1,24 @@
 use rodio::source::Source;
 
+// Generate random value between -1.0, and 1.0.
+fn rand_value() -> f32 {
+    (fastrand::f32() - 0.5) * 2.0
+}
+
 pub struct WhiteNoise {
     //rng: ThreadRng
+    value: f32,
+    alpha: f32,
 }
 
 impl WhiteNoise {
     #[inline]
-    pub fn new() -> Self {
+    pub fn new(alpha: f32) -> Self {
         WhiteNoise {
-            //rng: thread_rng()
+            value: rand_value(),
+            alpha,
         }
     }
-
 }
 
 impl Iterator for WhiteNoise {
@@ -19,7 +26,8 @@ impl Iterator for WhiteNoise {
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
-        Some((fastrand::f32() - 1.0) * 0.5)
+        self.value += rand_value() * self.alpha;
+        Some(self.value.sin())
     }
 }
 
