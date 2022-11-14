@@ -1,3 +1,5 @@
+mod whitenoise;
+
 use rodio::{Decoder, OutputStream, Sink, Source, source::SineWave};
 use std::time::Duration;
 use std::error::Error;
@@ -20,6 +22,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let cursor = Cursor::new(sounds[2]);
     let source = Decoder::new(cursor).unwrap();
     let source = SineWave::new(100.0).take_duration(Duration::from_secs_f32(0.25)).amplify(0.20);
+    let source = whitenoise::WhiteNoise::new(); //.amplify(100.0);
     // We want the sound to go forever, however, I need to figure
     // out how to make the fade smoother.
     sink.append(source.repeat_infinite());
