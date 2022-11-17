@@ -7,6 +7,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     let (_stream, stream_handle) = OutputStream::try_default().unwrap();
 
     let sink = Sink::try_new(&stream_handle).unwrap();
+
+    // Make sure to add the `take_duration` call, otherwise this
+    // will make an infinitely long vector and lead to a memory leak.
     let source = whitenoise::WhiteNoise::new(0.2)
         .take_duration(std::time::Duration::from_secs(30))
         .low_pass(500);
