@@ -14,8 +14,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         .take_duration(std::time::Duration::from_secs(30))
         .low_pass(500);
 
-    // We want the sound to go forever, however, I need to figure
-    // out how to make the fade smoother.
+    // Here we repeat the sound infinitely.
     sink.append(source.repeat_infinite());
     sink.sleep_until_end();
     Ok(())
