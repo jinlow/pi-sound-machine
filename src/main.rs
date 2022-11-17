@@ -4,9 +4,9 @@ use rodio::{OutputStream, Sink, Source};
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let (_stream, stream_handle) = OutputStream::try_default().unwrap();
+    let (_stream, stream_handle) = OutputStream::try_default()?;
 
-    let sink = Sink::try_new(&stream_handle).unwrap();
+    let sink = Sink::try_new(&stream_handle)?;
 
     // Make sure to add the `take_duration` call, otherwise this
     // will make an infinitely long vector and lead to a memory leak.
