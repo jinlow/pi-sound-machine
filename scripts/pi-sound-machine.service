@@ -1,0 +1,11 @@
+# Systemd script to start up the sound machine script.
+
+[Unit]
+Description=PiSoundMachine
+After=network.target
+[Service]
+ExecStart=/home/pi/.cargo/bin/pi-sound-machine
+Restart=always
+User=pi
+[Install]
+WantedBy=multi-user.target
